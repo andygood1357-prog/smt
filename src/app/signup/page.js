@@ -2,7 +2,7 @@
 export const dynamic = "force-dynamic";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { getFirebaseAuth } from "../../firebase";
 import { useState } from "react";
 
 export default function SignupPage() {
@@ -10,6 +10,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
 
   const signup = async () => {
+    const auth = getFirebaseAuth();
     await createUserWithEmailAndPassword(auth, email, password);
     alert("???? ??");
   };
@@ -17,8 +18,8 @@ export default function SignupPage() {
   return (
     <div>
       <h1>????</h1>
-      <input placeholder="email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
+      <input onChange={e => setEmail(e.target.value)} />
+      <input type="password" onChange={e => setPassword(e.target.value)} />
       <button onClick={signup}>????</button>
     </div>
   );
