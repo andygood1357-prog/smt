@@ -1,4 +1,5 @@
-﻿"use client";
+"use client";
+export const dynamic = "force-dynamic";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
@@ -10,15 +11,15 @@ export default function SignupPage() {
 
   const signup = async () => {
     await createUserWithEmailAndPassword(auth, email, password);
-    alert("회원가입 성공");
+    alert("???? ??");
   };
 
   return (
     <div>
-      <h1>회원가입</h1>
+      <h1>????</h1>
       <input placeholder="email" onChange={e => setEmail(e.target.value)} />
       <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={signup}>회원가입</button>
+      <button onClick={signup}>????</button>
     </div>
   );
 }

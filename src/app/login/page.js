@@ -1,4 +1,5 @@
-﻿"use client";
+"use client";
+export const dynamic = "force-dynamic";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
@@ -10,15 +11,15 @@ export default function LoginPage() {
 
   const login = async () => {
     await signInWithEmailAndPassword(auth, email, password);
-    alert("로그인 성공");
+    alert("??? ??");
   };
 
   return (
     <div>
-      <h1>로그인</h1>
+      <h1>???</h1>
       <input placeholder="email" onChange={e => setEmail(e.target.value)} />
       <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={login}>로그인</button>
+      <button onClick={login}>???</button>
     </div>
   );
 }
