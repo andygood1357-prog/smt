@@ -1,80 +1,34 @@
-﻿"use client";
-
-import React, { useState, useMemo } from "react";
+﻿import Image from "next/image";
 
 export default function Home() {
-  const PRODUCTS = [
-    { id: 1, name: "상품 A", price: 12900, image: "/products/a.jpg", category: "top" },
-    { id: 2, name: "상품 B", price: 18900, image: "/products/b.jpg", category: "top" },
-    { id: 3, name: "상품 C", price: 9900, image: "/products/c.jpg", category: "shoes" },
-    { id: 4, name: "상품 D", price: 25900, image: "/products/d.jpg", category: "shoes" }
-  ];
-
-  const [selectedId, setSelectedId] = useState(null);
-
-  const selected = useMemo(
-    () => PRODUCTS.find((p) => p.id === selectedId),
-    [selectedId]
-  );
-
-  const related = useMemo(() => {
-    if (!selected) return [];
-    return PRODUCTS.filter(
-      (p) => p.category === selected.category && p.id !== selected.id
-    );
-  }, [selected]);
-
   return (
-    <main style={{ padding: 40, fontFamily: "sans-serif" }}>
-      <h1>상품 목록</h1>
-
-      <div style={{ display: "flex", gap: 40 }}>
-        <div style={{ width: 300 }}>
-          {PRODUCTS.map((p) => (
-            <div
-              key={p.id}
-              onClick={() => setSelectedId(p.id)}
-              style={{
-                border: "1px solid #ccc",
-                padding: 12,
-                marginBottom: 10,
-                cursor: "pointer",
-                background: selectedId === p.id ? "#eee" : "#fff"
-              }}
-            >
-              <strong>{p.name}</strong>
-              <div>{p.price.toLocaleString()}원</div>
-            </div>
-          ))}
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={100}
+          height={20}
+          priority
+        />
+        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+            Welcome back.
+          </h1>
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            홈 화면은 원래대로 복구했고, 상품은 별도 페이지로 분리할 거야.
+          </p>
         </div>
-
-        <div style={{ flex: 1 }}>
-          {!selected ? (
-            <p>상품을 선택하세요</p>
-          ) : (
-            <>
-              <h2>{selected.name}</h2>
-              <img
-                src={selected.image}
-                alt={selected.name}
-                style={{ width: 300, display: "block" }}
-              />
-              <p>{selected.price.toLocaleString()}원</p>
-
-              <h3>관련 상품</h3>
-              <ul>
-                {related.map((r) => (
-                  <li key={r.id}>{r.name}</li>
-                ))}
-              </ul>
-            </>
-          )}
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+          <a
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
+            href="/smt/products"
+          >
+            상품 보러가기
+          </a>
         </div>
-      </div>
-
-      <p style={{ marginTop: 24, color: "#666" }}>
-        이미지 파일은 public/products/a.jpg 같은 경로에 넣으면 표시돼.
-      </p>
-    </main>
+      </main>
+    </div>
   );
 }
